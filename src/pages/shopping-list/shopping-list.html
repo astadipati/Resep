@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Shpping List</ion-title>
+    <ion-title>Shoping List</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,7 +22,9 @@
           type="text" 
           name="ingredientName" 
           placeholder="Milk" 
-          ngModel>
+          ngModel
+          required>
+          <!--required memastikan tidak boleh kosong-->
           <!--ngModel tidak perlu di input lagi pada ionic beda dengan angular2-->
           </ion-input>
       </ion-item>
@@ -33,13 +35,17 @@
           type="number" 
           name="Amount" 
           placeholder="2"
-          ngModel></ion-input>
+          ngModel
+          required></ion-input>
       </ion-item>
     </ion-list>
     <!--Tambah tombol-->
     <button 
       ion-button
       type="submit"
-      block>Add Item</button>
+      block
+      [disabled]="!f.valid">
+      <!--memastikan jika f nilainya valid maka tombol aktif-->
+      Add Item</button>
   </form>
 </ion-content>
