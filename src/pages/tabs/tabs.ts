@@ -10,5 +10,4 @@ import { ShoppingListPage } from './../shopping-list/shopping-list';
 export class TabsPage {
   slPage = ShoppingListPage;
   recipesPage = RecipesPage;
-
 }
