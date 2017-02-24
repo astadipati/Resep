@@ -4,6 +4,7 @@ export class ShoppingListService{
 
     addItem(name: string, amount:number){
         this.ingredients.push(new Ingredient(name, amount));
+        console.log(this.ingredients);
     }
     // handle array masukan lebih 
     addItems(items: Ingredient[]){
@@ -12,5 +13,9 @@ export class ShoppingListService{
     // copy of array
     getItems(){
         return this.ingredients.slice();
+    }
+    // remove / delete
+    removeItem(index: number){
+        this.ingredients.splice(index, 1);
     }
 }

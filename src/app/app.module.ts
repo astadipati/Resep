@@ -1,4 +1,5 @@
 
+
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -8,6 +9,7 @@ import { RecipesPage } from './../pages/recipes/recipes';
 import { RecipePage } from './../pages/recipe/recipe';
 import { EditRecipePage } from './../pages/edit-recipe/edit-recipe';
 
+import { ShoppingListService } from './../services/shopping-list'; //dibutuhkan untuk add
 
 @NgModule({
   declarations: [
@@ -32,6 +34,9 @@ import { EditRecipePage } from './../pages/edit-recipe/edit-recipe';
     TabsPage
     
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ShoppingListService
+    ]
 })
 export class AppModule {}
