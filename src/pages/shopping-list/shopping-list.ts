@@ -35,4 +35,10 @@ export class ShoppingListPage {
   private loadItems(){
     this.listItems = this.slService.getItems();
   }
+
+  // buat method hapus yang sudah di implement di shopping list
+  onCheckItem(index : number){
+    this.slService.removeItem(index);
+    this.loadItems();
+  }
 }

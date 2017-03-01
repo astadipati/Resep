@@ -51,7 +51,8 @@
   <ion-list>
     <!--kita akan melakukan perulangan data disini kita masih belum punya property listItems-->
     <!--kita akan membuatnya di -->
-    <ion-item *ngFor="let item of listItems">
+    <!--menambahkan panggil method hapus-->
+    <ion-item *ngFor="let item of listItems; let i = index " (click)="onCheckItem(i)">
       <!--Kita tampilkan nama dan jumlahnya disini-->
       <h3>{{ item.name }} ({{ item.amount }})</h3>
     </ion-item>
