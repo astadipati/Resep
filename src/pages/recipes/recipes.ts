@@ -1,22 +1,18 @@
+import { EditRecipePage } from './../edit-recipe/edit-recipe';
+import { NavController } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
 
-/*
-  Generated class for the Recipes page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-recipes',
   templateUrl: 'recipes.html'
 })
 export class RecipesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+constructor (private navCtrl: NavController){}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RecipesPage');
+// baru buat methodnya
+  onNewRecipe(){
+    // 2 stack dengan membawa objevt
+    this.navCtrl.push(EditRecipePage, {mode: 'New'});
   }
-
 }
