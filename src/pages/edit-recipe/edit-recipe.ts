@@ -1,6 +1,6 @@
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { NavParams, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
 
 
 @Component({
@@ -14,7 +14,8 @@ export class EditRecipePage implements OnInit {
 
   constructor(private navParams: NavParams,
               private actionSheetController: ActionSheetController,
-              private alrtCtrl: AlertController) { }
+              private alrtCtrl: AlertController,
+              private toastCtrl: ToastController) { }
 
   // membuat method OnInit
   ngOnInit() {
@@ -48,6 +49,13 @@ export class EditRecipePage implements OnInit {
               for(let i = len -1; i >= 0; i--){
                 fArray.removeAt(i);
               }
+              const toast = this.toastCtrl.create({
+            message: 'All Item were deleted !!',
+            duration: 1500,
+            position: 'bottom'
+          });
+          toast.present();
+          
             }
           }
         },
@@ -77,11 +85,24 @@ private createNewIngredientAlert(){
       handler: data => {
         // jika data kosong atau null
         if(data.name.trim() == '' || data.name == null){
+          const toast = this.toastCtrl.create({
+            message: 'Please enter a valid value',
+            duration: 1500,
+            position: 'bottom'
+          });
+          toast.present();
           return;
         }
         // setelah view handling sudah sinkron sekarang datanya, karena dia tipe FormArray jadi penulisannya ada <formarray>
         // dan ketika ngepush FormControl maka baru bisa ekstrack data.name dan validaror
         (<FormArray>this.recipeForm.get('ingredients')).push(new FormControl(data.name, Validators.required));
+        const toast = this.toastCtrl.create({
+            message: 'Item Added !',
+            duration: 1500,
+            position: 'bottom'
+          });
+          toast.present();
+          
       }
     }
   ]
