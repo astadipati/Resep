@@ -1,6 +1,7 @@
+import { RecipesService } from './../../services/recipes';
 import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 import { Component, OnInit } from '@angular/core';
-import { NavParams, ActionSheetController, AlertController, ToastController } from 'ionic-angular';
+import { NavParams, ActionSheetController, AlertController, ToastController, NavController } from 'ionic-angular';
 
 
 @Component({
@@ -15,7 +16,9 @@ export class EditRecipePage implements OnInit {
   constructor(private navParams: NavParams,
               private actionSheetController: ActionSheetController,
               private alrtCtrl: AlertController,
-              private toastCtrl: ToastController) { }
+              private toastCtrl: ToastController,
+              private recipesService: RecipesService,
+              private navCtrl: NavController) { }
 
   // membuat method OnInit
   ngOnInit() {
@@ -24,7 +27,18 @@ export class EditRecipePage implements OnInit {
   }
   // method onsubmit dari html diproses dimari pastikan yang diakses sudah dalam bentuk formGroup
   onSubmit() {
-    console.log(this.recipeForm);
+    // console.log(this.recipeForm);
+    const value = this.recipeForm.value; 
+    // ekstrack nilai recipeForm
+    let ingredients = [];
+    if(value.ingredients.length > 0){
+      ingredients = value.ingredients.map(name => { //konvert array string ke array objek dibawah
+        return {name: name, amount: 1}; //name by name property and amount set 1 by default
+      });
+    }
+    this.recipesService.addRecipe(value.title, value.description, value.difficulty, ingredients);
+    this.recipeForm.reset();//untk mengosongkan semua field
+    this.navCtrl.popToRoot();
   }
   // ini akan hendle action sheets show dari bawah yang harus didaftarkan di consturctor
   // supaya dapat di inport

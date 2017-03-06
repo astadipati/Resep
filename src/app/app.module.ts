@@ -1,5 +1,3 @@
-
-
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -10,6 +8,7 @@ import { RecipePage } from './../pages/recipe/recipe';
 import { EditRecipePage } from './../pages/edit-recipe/edit-recipe';
 
 import { ShoppingListService } from './../services/shopping-list'; //dibutuhkan untuk add
+import { RecipesService } from './../services/recipes';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,8 @@ import { ShoppingListService } from './../services/shopping-list'; //dibutuhkan 
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ShoppingListService
+    ShoppingListService,
+    RecipesService
     ]
 })
 export class AppModule {}
